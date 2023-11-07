@@ -23,6 +23,10 @@ namespace CoreValidation_1.Controllers
         [HttpPost]
         public IActionResult CreateCategory(CreateCategoryRequestModel category)
         {
+            //Server Side Validation'da bilgiler back end' gönderilir ve kontrol öyle saglanır
+
+
+            //Client Side Validation'da bilgiler istemciden ayrılamaz Validation Front End'de kontrol edilir... Bunun icin tek yapmanız gereken şey .Net Core MVC'deki iki kütüphaneyi kullanmaktır...
             if (ModelState.IsValid) //Model durumu Validation'dan gecmişse
             {
 
@@ -36,7 +40,7 @@ namespace CoreValidation_1.Controllers
                 _db.SaveChanges();
                 return RedirectToAction("GetCategories");
             }
-            CategoryCreationPureVM crpVM = new()
+            CategoryCreationSharedVM crpVM = new()
             {
                 Category = category
             };
